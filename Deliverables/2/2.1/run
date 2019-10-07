@@ -2,4 +2,4 @@
 ls
 cd /home/travis/build/pahul-singh25/Software_Construction/Deliverables/2/2.1/build/classes/java/main 
 ls
-./java JsonProject
+./java -version
