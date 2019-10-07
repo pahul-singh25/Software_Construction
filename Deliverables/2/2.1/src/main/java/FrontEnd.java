@@ -25,7 +25,7 @@ public class FrontEnd {
         int lineNumber = 0;
         while(sc.hasNextLine())
         {
-            if(lineNumber==10)
+            if(lineNumber==9)
             {
                 sort ob =new sort();
                 arr1=ob.ListSort(arr);
