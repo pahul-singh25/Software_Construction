@@ -16,6 +16,8 @@ public class FrontEnd {
         List<JsonElement> arr = new ArrayList<>();
         List<JsonElement> arr1 = new ArrayList<>();
         List<List<JsonElement>> arr2 =new ArrayList<>();
+        List<JsonArray> a1 = new ArrayList<>();
+//        JsonArray a1 =new JsonArray();
         //File text = new File("C:\\Users\\khaak\\Downloads\\softw_ass2\\sample.txt");
 
         //Creating Scanner instnace to read File in Java
@@ -36,7 +38,7 @@ public class FrontEnd {
                 sort ob =new sort();
                 arr1=ob.ListSort(arr);
                 JsonArray jarr = new JsonArray();
-
+                
                 StringBuilder csvBuilder = new StringBuilder();
 
                 for(JsonElement elem : arr1){
@@ -52,7 +54,8 @@ public class FrontEnd {
                 //Remove last comma
                 csv = csv.substring(0, csv.length() - ",".length());
 
-                System.out.print(jarr);
+//                System.out.print(jarr);
+                a1.add(jarr);
                 arr2.add(arr1);
                 lineNumber=0;
                 arr.clear();
@@ -106,5 +109,12 @@ public class FrontEnd {
         //arr1=ob.ListSort(arr);
         //System.out.println(arr1.get(1).getJsonVal());
         */
+        StringBuilder arr_output = new StringBuilder();
+        arr_output.append("[");
+        for(JsonArray t_arr : a1){
+            arr_output.append(t_arr.toString());
+        }
+        arr_output.append("]");
+        System.out.print(arr_output);
     }
 }
