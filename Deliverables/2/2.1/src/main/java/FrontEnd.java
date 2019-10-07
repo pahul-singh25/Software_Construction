@@ -1,7 +1,7 @@
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-
+import com.google.gson.JsonArray;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -29,9 +29,11 @@ public class FrontEnd {
             {
                 sort ob =new sort();
                 arr1=ob.ListSort(arr);
+                JsonArray jarr = new JsonArray();
                 StringBuilder csvBuilder = new StringBuilder();
 
                 for(JsonElement elem : arr1){
+                    jarr.add(elem);
                     csvBuilder.append(elem);
                     csvBuilder.append(",");
                 }
@@ -43,7 +45,7 @@ public class FrontEnd {
                 //Remove last comma
                 csv = csv.substring(0, csv.length() - ",".length());
 
-                System.out.print(csv);
+                System.out.print(jarr);
                 arr2.add(arr1);
                 lineNumber=0;
                 arr.clear();
@@ -60,9 +62,11 @@ public class FrontEnd {
         {
             sort ob =new sort();
             arr1=ob.ListSort(arr);
+            JsonArray jarr = new JsonArray();
             StringBuilder csvBuilder = new StringBuilder();
 
             for(JsonElement elem : arr1){
+                jarr.add(elem);
                 csvBuilder.append(elem);
                 csvBuilder.append(",");
             }
@@ -73,7 +77,7 @@ public class FrontEnd {
             //Remove last comma
             csv = csv.substring(0, csv.length() - ",".length());
 
-            System.out.print(csv);
+            System.out.print(jarr);
             //OUTPUT: Milan,London,New
 //            for(JsonElement jo: arr1){
 //                System.out.print(",");
