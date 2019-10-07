@@ -25,7 +25,13 @@ public class FrontEnd {
         int lineNumber = 0;
         while(sc.hasNextLine())
         {
-            if(lineNumber==9)
+            String line = sc.nextLine();
+            JsonParser jsonParser = new JsonParser();
+            arr.add((jsonParser.parse(line)));
+
+
+            ++lineNumber;
+            if(lineNumber==10)
             {
                 sort ob =new sort();
                 arr1=ob.ListSort(arr);
@@ -51,44 +57,39 @@ public class FrontEnd {
                 arr.clear();
                 //arr1.clear();
             }
-            String line = sc.nextLine();
-            JsonParser jsonParser = new JsonParser();
-            arr.add((jsonParser.parse(line)));
 
-
-            ++lineNumber;
         }
-        if(lineNumber<10)
-        {
-            sort ob =new sort();
-            arr1=ob.ListSort(arr);
-            JsonArray jarr = new JsonArray();
-            StringBuilder csvBuilder = new StringBuilder();
-
-            for(JsonElement elem : arr1){
-                jarr.add(elem);
-                csvBuilder.append(elem);
-                csvBuilder.append(",");
-            }
-
-            String csv = csvBuilder.toString();
-            //OUTPUT: Milan,London,New York,San Francisco,
-
-            //Remove last comma
-            csv = csv.substring(0, csv.length() - ",".length());
-
-            System.out.print(jarr);
-            //OUTPUT: Milan,London,New
-//            for(JsonElement jo: arr1){
-//                System.out.print(",");
-//                System.out.print(jo);
+//        if(lineNumber<10)
+//        {
+//            sort ob =new sort();
+//            arr1=ob.ListSort(arr);
+//            JsonArray jarr = new JsonArray();
+//            StringBuilder csvBuilder = new StringBuilder();
+//
+//            for(JsonElement elem : arr1){
+//                jarr.add(elem);
+//                csvBuilder.append(elem);
+//                csvBuilder.append(",");
 //            }
-//            System.out.print("]");
-            arr2.add(arr1);
-            lineNumber=0;
-            arr.clear();
-            arr1.clear();
-        }
+//
+//            String csv = csvBuilder.toString();
+//            //OUTPUT: Milan,London,New York,San Francisco,
+//
+//            //Remove last comma
+//            csv = csv.substring(0, csv.length() - ",".length());
+//
+//            System.out.print(jarr);
+//            //OUTPUT: Milan,London,New
+////            for(JsonElement jo: arr1){
+////                System.out.print(",");
+////                System.out.print(jo);
+////            }
+////            System.out.print("]");
+//            arr2.add(arr1);
+//            lineNumber=0;
+//            arr.clear();
+//            arr1.clear();
+//        }
         /*
         System.out.println("printing output"+arr2.size());
        // for(JsonElement jo: arr2.get(0))System.out.println(jo);
