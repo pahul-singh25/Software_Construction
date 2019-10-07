@@ -12,7 +12,7 @@ public class FrontEnd {
 
     public void takeInp()throws FileNotFoundException
     {
-        System.out.println("Enter inputs");
+//        System.out.println("Enter inputs");
         List<JsonElement> arr = new ArrayList<>();
         List<JsonElement> arr1 = new ArrayList<>();
         List<List<JsonElement>> arr2 =new ArrayList<>();
