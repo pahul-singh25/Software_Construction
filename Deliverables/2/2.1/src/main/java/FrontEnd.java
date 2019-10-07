@@ -37,7 +37,7 @@ public class FrontEnd {
                 }
 
                 String csv = csvBuilder.toString();
-                System.out.println(csv);
+
                 //OUTPUT: Milan,London,New York,San Francisco,
 
                 //Remove last comma
@@ -68,7 +68,6 @@ public class FrontEnd {
             }
 
             String csv = csvBuilder.toString();
-            System.out.println(csv);
             //OUTPUT: Milan,London,New York,San Francisco,
 
             //Remove last comma
