@@ -1,4 +1,4 @@
 #!/bin/bash
-ls
+
 cd /home/travis/build/pahul-singh25/Software_Construction/Deliverables/2/2.2/build/libs
-java -jar pahul2-1.0-SNAPSHOT.jar
+java -jar pahul-1.0-SNAPSHOT.jar
