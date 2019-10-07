@@ -29,7 +29,21 @@ public class FrontEnd {
             {
                 sort ob =new sort();
                 arr1=ob.ListSort(arr);
-                for(JsonElement jo: arr1)System.out.println(jo);
+                StringBuilder csvBuilder = new StringBuilder();
+
+                for(JsonElement elem : arr1){
+                    csvBuilder.append(elem);
+                    csvBuilder.append(",");
+                }
+
+                String csv = csvBuilder.toString();
+                System.out.println(csv);
+                //OUTPUT: Milan,London,New York,San Francisco,
+
+                //Remove last comma
+                csv = csv.substring(0, csv.length() - ",".length());
+
+                System.out.print(csv);
                 arr2.add(arr1);
                 lineNumber=0;
                 arr.clear();
@@ -46,7 +60,27 @@ public class FrontEnd {
         {
             sort ob =new sort();
             arr1=ob.ListSort(arr);
-            for(JsonElement jo: arr1)System.out.println(jo);
+            StringBuilder csvBuilder = new StringBuilder();
+
+            for(JsonElement elem : arr1){
+                csvBuilder.append(elem);
+                csvBuilder.append(",");
+            }
+
+            String csv = csvBuilder.toString();
+            System.out.println(csv);
+            //OUTPUT: Milan,London,New York,San Francisco,
+
+            //Remove last comma
+            csv = csv.substring(0, csv.length() - ",".length());
+
+            System.out.print(csv);
+            //OUTPUT: Milan,London,New
+//            for(JsonElement jo: arr1){
+//                System.out.print(",");
+//                System.out.print(jo);
+//            }
+//            System.out.print("]");
             arr2.add(arr1);
             lineNumber=0;
             arr.clear();
