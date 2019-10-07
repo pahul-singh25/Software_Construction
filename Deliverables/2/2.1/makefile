@@ -3,4 +3,4 @@ gradle-java:
 	tar -xf openjdk-13_linux-x64_bin.tar.gz
 	echo "java binaries are now in ./jdk-13/bin/"
 	gradle build
-	grade jar
+	gradle jar
