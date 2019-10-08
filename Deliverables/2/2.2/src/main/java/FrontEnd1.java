@@ -3,6 +3,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 
+import java.awt.*;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
@@ -120,9 +121,12 @@ public class FrontEnd1 {
 //        arr_output.append("]");
 //        StringBuilder s=arr_output.replace();
 //        System.out.print(s);
+        int p=1;
         System.out.print("[");
         for(JsonArray t_arr : a1){
          System.out.print(t_arr);
+            if(p<=a1.size()-1)System.out.print(",");
+            ++p;
         }
         System.out.print("]");
     }
