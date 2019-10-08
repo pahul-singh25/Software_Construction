@@ -112,14 +112,19 @@ public class FrontEnd1 {
         //System.out.println(arr1.get(1).getJsonVal());
         */
 
-        StringBuilder arr_output = new StringBuilder();
-        arr_output.append("[");
+//        StringBuilder arr_output = new StringBuilder();
+//        arr_output.append("[");
+//        for(JsonArray t_arr : a1){
+//            arr_output.append(t_arr.toString());
+//        }
+//        arr_output.append("]");
+//        StringBuilder s=arr_output.replace();
+//        System.out.print(s);
+        System.out.print("[");
         for(JsonArray t_arr : a1){
-            arr_output.append(t_arr.toString());
+         System.out.print(t_arr);
         }
-        arr_output.append("]");
-        System.out.print(arr_output);
-
+        System.out.print("[");
     }
 
     public static boolean isJson(String Json) {
