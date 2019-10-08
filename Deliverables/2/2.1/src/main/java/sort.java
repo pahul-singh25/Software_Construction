@@ -24,7 +24,8 @@ public class sort {
 
     private static boolean compare(JsonElement obj1, JsonElement obj2) {
         // Return true if obj2>obj1
-         if (obj1.isJsonObject() && (obj2.isJsonPrimitive() && obj2.getAsJsonPrimitive().isString())) {
+
+        if (obj1.isJsonObject() && (obj2.isJsonPrimitive() && obj2.getAsJsonPrimitive().isString())) {
             return false;
         } else if (obj2.isJsonObject() && (obj1.isJsonPrimitive() && obj1.getAsJsonPrimitive().isString())) {
             return true;
@@ -33,29 +34,29 @@ public class sort {
         } else if (((obj2.isJsonPrimitive() && obj2.getAsJsonPrimitive().isString()) || obj2.isJsonObject()) && (obj1.isJsonPrimitive() && obj1.getAsJsonPrimitive().isNumber())) {
             return true;
         } else if (obj1.isJsonPrimitive() && obj2.isJsonPrimitive()) {
-             if (obj1.getAsJsonPrimitive().isNumber() && obj2.getAsJsonPrimitive().isNumber()) {
-                 return obj1.getAsJsonPrimitive().getAsInt() < obj2.getAsJsonPrimitive().getAsInt();
+            if (obj1.getAsJsonPrimitive().isNumber() && obj2.getAsJsonPrimitive().isNumber()) {
+                return obj1.getAsJsonPrimitive().getAsDouble() < obj2.getAsJsonPrimitive().getAsDouble();
 
-             } else if (obj1.getAsJsonPrimitive().isString() && obj2.getAsJsonPrimitive().isString()) {
-                 int difference = (obj1.getAsJsonPrimitive().getAsString()).compareTo((obj2.getAsJsonPrimitive().getAsString()));
+            } else if (obj1.getAsJsonPrimitive().isString() && obj2.getAsJsonPrimitive().isString()) {
+                int difference = (obj1.getAsJsonPrimitive().getAsString()).compareTo((obj2.getAsJsonPrimitive().getAsString()));
 
-                 if (difference <= 0) {
-                     return true;
-                 } else {
-                     return false;
-                 }
-             }
-         }
-           else if (obj1.isJsonObject() && obj2.isJsonObject()) {
-                return compare(obj1.getAsJsonObject().get("name"), obj2.getAsJsonObject().get("name"));
+                if (difference <= 0) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        }
+        else if (obj1.isJsonObject() && obj2.isJsonObject()) {
+            return compare(obj1.getAsJsonObject().get("name"), obj2.getAsJsonObject().get("name"));
 //                JsonElement json1= obj1.getAsJsonObject().remove("name");
 //                JsonElement json2=obj2.getAsJsonObject().remove("name");
 //                return compare(json1,json2);
 
 
-            }
+        }
 
-         else {
+        else {
             return false;
         }
 
