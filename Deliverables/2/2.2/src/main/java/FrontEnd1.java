@@ -78,6 +78,25 @@ public class FrontEnd1 {
 //                            System.out.println("json is" + ar[i]);
                                 arr.add((jsonParser.parse(ar[i])));
                                 ++lineNumber;
+                                if (lineNumber == 10) {
+                                    arr1 = sort.ListSort(arr);
+//                    for (JsonElement jo : arr1) System.out.println(jo);
+                                    JsonArray jarr = new JsonArray();
+                                    for (JsonElement elem : arr1) jarr.add(elem);
+//                    arr2.add(arr1);
+//                    JsonArray a = new JsonArray();
+//                    JsonArray b = new JsonArray();
+//                    a.add(b);
+//                    //System.out.print(a);
+                                    //System.out.print(jarr);
+//                    System.out.println(jarr);
+                                    a1.add(jarr);
+                                    arr2.add(arr1);
+                                    lineNumber = 0;
+                                    arr.clear();
+
+                                    //arr1.clear();
+                                }
                             } else t = t + ar[i];
                         }
                     }
