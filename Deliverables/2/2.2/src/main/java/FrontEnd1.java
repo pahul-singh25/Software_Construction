@@ -8,6 +8,7 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 public class FrontEnd1 {
 
@@ -15,6 +16,7 @@ public class FrontEnd1 {
     {
 //        System.out.println("Enter inputs");
         Scanner sc = new Scanner(System.in);
+        sc.useDelimiter(Pattern.compile("[\"{}\\s]"));
 //        String l=sc.nextLine();
 //        Gson s=new Gson();
 //        String test=s.toJson(l);
@@ -35,9 +37,9 @@ public class FrontEnd1 {
 
         //Reading each line of file using Scanner class
         int lineNumber = 0;
-        while(sc.hasNextLine())
+        while(sc.hasNext())
         {
-            String line = sc.nextLine();
+            String line = sc.next();
             line.trim();
             if(!(line.length()==0)) {
                 rem=t;
