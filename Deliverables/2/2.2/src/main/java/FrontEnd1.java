@@ -38,51 +38,48 @@ public class FrontEnd1 {
         {
             String line = sc.nextLine();
             line.trim();
-            t=t+line;
+            if(!(line.length()==0)) {
+                t = t + line;
 //            System.out.println("tis"+t);
-            ans=isJson(t);
-            if(ans)
-            {
+                ans = isJson(t);
+                if (ans) {
 //                System.out.println("json is"+t);
-                line=t;
-                t="";
-                arr.add((jsonParser.parse(line)));
-                ++lineNumber;
-                if (lineNumber == 10) {
-                    arr1 = sort.ListSort(arr);
+                    line = t;
+                    t = "";
+                    arr.add((jsonParser.parse(line)));
+                    ++lineNumber;
+                    if (lineNumber == 10) {
+                        arr1 = sort.ListSort(arr);
 //                    for (JsonElement jo : arr1) System.out.println(jo);
-                    JsonArray jarr = new JsonArray();
-                    for(JsonElement elem : arr1)jarr.add(elem);
+                        JsonArray jarr = new JsonArray();
+                        for (JsonElement elem : arr1) jarr.add(elem);
 //                    arr2.add(arr1);
 //                    JsonArray a = new JsonArray();
 //                    JsonArray b = new JsonArray();
 //                    a.add(b);
 //                    //System.out.print(a);
-                    //System.out.print(jarr);
+                        //System.out.print(jarr);
 //                    System.out.println(jarr);
-                    a1.add(jarr);
-                    arr2.add(arr1);
-                    lineNumber = 0;
-                    arr.clear();
+                        a1.add(jarr);
+                        arr2.add(arr1);
+                        lineNumber = 0;
+                        arr.clear();
 
-                    //arr1.clear();
-                }
+                        //arr1.clear();
+                    }
 
-            }
-
-            else
-            {
-                if(t.charAt(0)!='{' && (t.equals(line))) {
-                    String ar[] = line.split(" ");
-                    t="";
-                    for (int i = 0; i < ar.length; ++i) {
-                        ans = isJson(ar[i]);
-                        if (ans) {
+                } else {
+                    if (t.charAt(0) != '{' && (t.equals(line))) {
+                        String ar[] = line.split(" ");
+                        t = "";
+                        for (int i = 0; i < ar.length; ++i) {
+                            ans = isJson(ar[i]);
+                            if (ans) {
 //                            System.out.println("json is" + ar[i]);
-                            arr.add((jsonParser.parse(ar[i])));
-                            ++lineNumber;
+                                arr.add((jsonParser.parse(ar[i])));
+                                ++lineNumber;
+                            } else t = t + ar[i];
                         }
-                        else t = t + ar[i];
                     }
                 }
             }
