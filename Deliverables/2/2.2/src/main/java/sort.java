@@ -24,6 +24,7 @@ public class sort {
 
     private static boolean compare(JsonElement obj1, JsonElement obj2) {
         // Return true if obj2>obj1
+
          if (obj1.isJsonObject() && (obj2.isJsonPrimitive() && obj2.getAsJsonPrimitive().isString())) {
             return false;
         } else if (obj2.isJsonObject() && (obj1.isJsonPrimitive() && obj1.getAsJsonPrimitive().isString())) {
@@ -34,7 +35,7 @@ public class sort {
             return true;
         } else if (obj1.isJsonPrimitive() && obj2.isJsonPrimitive()) {
              if (obj1.getAsJsonPrimitive().isNumber() && obj2.getAsJsonPrimitive().isNumber()) {
-                 return obj1.getAsJsonPrimitive().getAsInt() < obj2.getAsJsonPrimitive().getAsInt();
+                 return obj1.getAsJsonPrimitive().getAsDouble() < obj2.getAsJsonPrimitive().getAsDouble();
 
              } else if (obj1.getAsJsonPrimitive().isString() && obj2.getAsJsonPrimitive().isString()) {
                  int difference = (obj1.getAsJsonPrimitive().getAsString()).compareTo((obj2.getAsJsonPrimitive().getAsString()));
