@@ -16,7 +16,12 @@ public class FrontEnd1 {
     {
 //        System.out.println("Enter inputs");
         Scanner sc = new Scanner(System.in);
-        sc.useDelimiter(Pattern.compile("[\"{}\\s]"));
+        sc.useDelimiter(Pattern.compile("[\"\\s]"));
+//        if(sc.hasNext())
+//        {
+//            System.out.print("s");
+//            System.out.println(sc.next());
+//        }
 //        String l=sc.nextLine();
 //        Gson s=new Gson();
 //        String test=s.toJson(l);
@@ -40,12 +45,16 @@ public class FrontEnd1 {
         while(sc.hasNext())
         {
             String line = sc.next();
+            //System.out.println(line);
             line.trim();
             if(!(line.length()==0)) {
                 rem=t;
                 t = t + line;
 //            System.out.println("tis"+t);
                 ans = isJson(t);
+                System.out.print("tis "+t+" ");
+                System.out.println("tis"+isJson(t));
+
                 if (ans) {
 //                System.out.println("json is"+t);
                     line = t;

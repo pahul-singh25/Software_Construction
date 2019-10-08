@@ -12,7 +12,7 @@ public class JsonProject {
         //      "{ \"brand\" : \"Mercedes\", \"doors\" : 5 }";
         BufferedReader br;
         try {
-            testdriver jv=new testdriver();
+            CustomParse jv=new CustomParse();
             jv.takeInp();
             // System.out.println(new File("input.txt").getAbsolutePath());
             //File f = new File("input.txt");
