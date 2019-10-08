@@ -76,36 +76,40 @@ public class testdriver {
                     //if (t.charAt(0) != '{' && (t.equals(line))) {
                     String ar[] = line.split(" ");
                     //t = "";
+
                     t=rem;
                     for (int i = 0; i < ar.length; ++i) {
-                        t=t+ar[i];
-                        ans = isJson(t);
-                        if (ans) {
+                        //System.out.print("arr"+ar[i]);
+                        if (!(ar[i].isEmpty())) {
+                            t = t + ar[i];
+                            ans = isJson(t);
+                            if (ans) {
 //                            System.out.println("json is" + ar[i]);
-                            arr.add((jsonParser.parse(t)));
-                            t="";
-                            ++lineNumber;
-                            if (lineNumber == 10) {
-                                arr1 = sort.ListSort(arr);
+                                arr.add((jsonParser.parse(t)));
+                                t = "";
+                                ++lineNumber;
+                                if (lineNumber == 10) {
+                                    arr1 = sort.ListSort(arr);
 //                    for (JsonElement jo : arr1) System.out.println(jo);
-                                JsonArray jarr = new JsonArray();
-                                for (JsonElement elem : arr1) jarr.add(elem);
+                                    JsonArray jarr = new JsonArray();
+                                    for (JsonElement elem : arr1) jarr.add(elem);
 //                    arr2.add(arr1);
 //                    JsonArray a = new JsonArray();
 //                    JsonArray b = new JsonArray();
 //                    a.add(b);
 //                    //System.out.print(a);
-                                System.out.print(jarr);
+                                    System.out.print(jarr);
 //                    System.out.println(jarr);
-                                a1.add(jarr);
-                                arr2.add(arr1);
-                                lineNumber = 0;
-                                arr.clear();
-                                break;
-                                //arr1.clear();
+                                    a1.add(jarr);
+                                    arr2.add(arr1);
+                                    lineNumber = 0;
+                                    arr.clear();
+                                    break;
+                                    //arr1.clear();
+                                }
                             }
+                            //else t = t + ar[i];
                         }
-                        //else t = t + ar[i];
                     }
                     //}
                 }
