@@ -73,10 +73,12 @@ public class FrontEnd1 {
                         String ar[] = line.split(" ");
                         t = "";
                         for (int i = 0; i < ar.length; ++i) {
-                            ans = isJson(ar[i]);
+                            t=t+ar[i];
+                            ans = isJson(t);
                             if (ans) {
 //                            System.out.println("json is" + ar[i]);
-                                arr.add((jsonParser.parse(ar[i])));
+                                arr.add((jsonParser.parse(t)));
+                                t="";
                                 ++lineNumber;
                                 if (lineNumber == 10) {
                                     arr1 = sort.ListSort(arr);
@@ -97,7 +99,8 @@ public class FrontEnd1 {
 
                                     //arr1.clear();
                                 }
-                            } else t = t + ar[i];
+                            }
+                            //else t = t + ar[i];
                         }
                     }
                 }
