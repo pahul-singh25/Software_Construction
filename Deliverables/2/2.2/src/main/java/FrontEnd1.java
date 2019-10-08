@@ -22,6 +22,7 @@ public class FrontEnd1 {
         boolean ans;
         //boolean ans = isJson("{name:");
         String t="";
+        String rem="";
         //System.out.println(ans);
         List<JsonElement> arr = new ArrayList<>();
         List<JsonElement> arr1 = new ArrayList<>();
@@ -39,6 +40,7 @@ public class FrontEnd1 {
             String line = sc.nextLine();
             line.trim();
             if(!(line.length()==0)) {
+                rem=t;
                 t = t + line;
 //            System.out.println("tis"+t);
                 ans = isJson(t);
@@ -69,9 +71,10 @@ public class FrontEnd1 {
                     }
 
                 } else {
-                    if (t.charAt(0) != '{' && (t.equals(line))) {
+                    //if (t.charAt(0) != '{' && (t.equals(line))) {
                         String ar[] = line.split(" ");
-                        t = "";
+                        //t = "";
+                        t=rem;
                         for (int i = 0; i < ar.length; ++i) {
                             t=t+ar[i];
                             ans = isJson(t);
@@ -102,7 +105,7 @@ public class FrontEnd1 {
                             }
                             //else t = t + ar[i];
                         }
-                    }
+                    //}
                 }
             }
         }
