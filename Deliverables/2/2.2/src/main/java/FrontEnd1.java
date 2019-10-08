@@ -124,7 +124,7 @@ public class FrontEnd1 {
         for(JsonArray t_arr : a1){
          System.out.print(t_arr);
         }
-        System.out.print("[");
+        System.out.print("]");
     }
 
     public static boolean isJson(String Json) {
