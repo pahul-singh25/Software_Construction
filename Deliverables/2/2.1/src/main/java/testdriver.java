@@ -52,7 +52,7 @@ public class testdriver {
 
                         JsonArray jarr = new JsonArray();
                         for (JsonElement elem : arr1) jarr.add(elem);
-                        System.out.print(jarr);
+//                        System.out.print(jarr);
                         arr1 = sort.ListSort(arr);
 //                    for (JsonElement jo : arr1) System.out.println(jo);
                         //JsonArray jarr = new JsonArray();
