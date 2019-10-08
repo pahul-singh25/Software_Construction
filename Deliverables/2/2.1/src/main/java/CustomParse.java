@@ -103,7 +103,9 @@ public class CustomParse {
                     }
                 }
             } else if (st > 0) {
-                if (c == '"') {
+                char e=t.charAt(i-1);
+                if (c == '"' &&  e!='\\') {
+
                     st = 0;
                     //in = i;
                     s = t.substring(in, i + 1);
