@@ -44,7 +44,7 @@ public class CustomParse {
         }
         //System.out.println("tis"+t);
         String s;
-        int in = 0, js = 0, st = 0, sp = 1,num=0;
+        int in = 0, js = 0, st = 0, sp = 1,num=0,ig=1;
         if (t.charAt(0) == '{') js = 1;
         else if (t.charAt(0) == '"') st = 1;
         else num = 1;
@@ -126,9 +126,9 @@ public class CustomParse {
                     in = i;
                 }
             } else if (js > 0) {
-                if (c == '{') ++js;
+                if (c == '{' && ig>=1) ++js;
 
-                else if (c == '}') {
+                else if (c == '}'&& ig>=1) {
                     --js;
                     if (js == 0) {
                         s = t.substring(in, i + 1);
@@ -149,6 +149,8 @@ public class CustomParse {
                         in = i;
                     }
                 }
+                else if(c=='"')ig=ig*-1;
+
             }
 
           else if (c==' ') {
