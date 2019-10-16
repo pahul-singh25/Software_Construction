@@ -39,7 +39,7 @@ public class input {
         //String t;
         while (sc.hasNextLine()) {
             String line = sc.nextLine();
-            line.trim();
+            line=line.trim();
             if ((line.isEmpty())) t = t + "breakpoint";
             else t = t + line;
         }
