@@ -40,10 +40,9 @@ public class input {
         while (sc.hasNextLine()) {
             String line = sc.nextLine();
             line=line.trim();
-            if ((line.isEmpty())) t = t + "breakpoint";
-            else t = t + line;
+            if (!(line.isEmpty())) t = t + line;
         }
-        String fg[] = t.split("breakpoint");
+        String fg[] = t.split("\\[\\[\\[");
       //  System.out.println("len" + fg.length);
         for (int va = 0; va < fg.length; ++va) {
            // System.out.println("el" + fg[va]);
@@ -51,7 +50,7 @@ public class input {
              //   System.out.println("run"+lineNumber);
                 ++lineNumber;
                 int in = 0, p = 0;
-                t = fg[va];
+                t = "[[["+fg[va];
                 in = t.length();
                 for (int i = t.length() - 1; i >= 0; --i) {
                     c = t.charAt(i);
