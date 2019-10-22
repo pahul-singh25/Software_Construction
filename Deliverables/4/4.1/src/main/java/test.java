@@ -7,14 +7,15 @@ public class test {
     public boolean play(String stone, int xpos, int ypos, List<String[][]> arr)
     {
 
+     //   System.out.print(xpos +" "+ypos);
 //        System.out.println(stone);
-       // System.out.println("whose chance is"+WhoseChance(arr));
+  //      System.out.println("whose chance is"+WhoseChance(arr));
         if(!stone.trim().equals(WhoseChance(arr)))//check if TURN is valid
         {
            // System.out.println("Hello");
             return false;
         }
-      //  System.out.println("checking validity of the board "+IsBoardValid(arr));
+   //     System.out.println("checking validity of the board "+IsBoardValid(arr));
 
         if(!IsBoardValid(arr))
         {
@@ -24,7 +25,7 @@ public class test {
             return false;
         }
 //
-//
+       //  printBoard(arr.get(0));
 //
         if(!PlaceStoneValidity(stone,xpos,ypos,arr))
         {
@@ -36,6 +37,64 @@ public class test {
 
         return true;
     }
+
+    public boolean PlaceStoneValidity(String stone, int xpos, int ypos, List<String[][]> arr)
+    {
+      //  System.out.println("hello");
+        String[][] str=arr.get(0);
+        if(!str[xpos][ypos].equals(" "))
+        {
+
+            return false;
+        }
+        if(CheckSelfCaptureRule7( stone,  xpos,  ypos, arr.get(0)))
+        {
+         //   System.out.println("CheckSelfCaptureRule7");
+            return false;
+        }
+        if(CheckKoRule8(stone,  xpos,  ypos, arr))
+        {
+            return false;
+
+        }
+
+        return true;
+    }
+
+    public boolean CheckSelfCaptureRule7(String stone, int xpos, int ypos, String[][] arr)
+    {
+//        System.out.println("hello1");
+//        System.out.println(stone);
+//        System.out.println("stone.trim().equals(w)"+stone.trim().equals("W"));
+        arr[xpos][ypos]=stone;
+
+        if(stone.trim().equals("B"))
+        {
+            RemoveZeroLiberty("W",arr);
+            if(CheckLiberty(xpos,ypos,arr)==0)
+            {
+                arr[xpos][ypos]=" ";
+
+                return true;
+            }
+        }
+        if(stone.trim().equals("W"))
+        {
+        //    System.out.println("hello12");
+            RemoveZeroLiberty("B",arr);
+          //  printBoard(arr);
+            if(CheckLiberty(xpos,ypos,arr)==0)
+            {
+                arr[xpos][ypos]=" ";
+              //  printBoard(arr);
+                ResInsert(arr);
+                return true;
+            }
+        }
+
+        return false;
+    }
+
 
     public boolean IsBoardValid(List<String[][]> arr)
     {
@@ -163,25 +222,7 @@ public class test {
     }
 
 
-    public boolean PlaceStoneValidity(String stone, int xpos, int ypos, List<String[][]> arr)
-    {
-        String[][] str=arr.get(0);
-        if(!str[xpos][ypos].equals(" "))
-        {
-            return false;
-        }
-         if(CheckSelfCaptureRule7( stone,  xpos,  ypos, arr.get(0)))
-         {
-             return false;
-         }
-         if(CheckKoRule8(stone,  xpos,  ypos, arr))
-         {
-             return false;
 
-         }
-
-        return true;
-    }
     public boolean CheckKoRule8(String stone, int xpos, int ypos, List<String[][]> arr)
     {
         if(arr.size()!=2)
@@ -213,33 +254,6 @@ public class test {
         return true;
     }
     // return true if self capture is possible
-    public boolean CheckSelfCaptureRule7(String stone, int xpos, int ypos, String[][] arr)
-    {
-        arr[xpos][ypos]=stone;
-
-        if(stone.trim().equals("B"))
-        {
-            RemoveZeroLiberty("W",arr);
-            if(CheckLiberty(xpos,ypos,arr)==0)
-            {
-                arr[xpos][ypos]=" ";
-
-                return true;
-            }
-        }
-        if(stone.trim().equals("w"))
-        {
-            RemoveZeroLiberty("B",arr);
-            if(CheckLiberty(xpos,ypos,arr)==0)
-            {
-                arr[xpos][ypos]=" ";
-                ResInsert(arr);
-                return true;
-            }
-        }
-
-        return false;
-    }
 
     public void ResInsert(String[][] arr)
     {
