@@ -95,9 +95,11 @@ public class input {
                 int pos = 0;
                 //boolean ans;
                 String com[] = comm(elements[0]);
+                System.out.println("full command is "+ elements[0]);
 
                 if (com.length > 2) {
                     if (com[0].equals("\"reachable?\"")) {
+                        System.out.println("command is "+ com[0]);
                         int position2[] = points(com[1]);
                         int[][] arr = new int[19][19];
                         arr[position2[0]][position2[1]] = 1;
