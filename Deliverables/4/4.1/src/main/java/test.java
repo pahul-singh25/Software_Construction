@@ -421,7 +421,7 @@ public class test {
                 {
                     if(str2[i][j].trim().equals("B"))
                     {
-                        System.out.println("i am inside");
+
                         numberBlack2++;
                     }
                     if(str2[i][j].trim().equals("W"))
