@@ -22,7 +22,7 @@ public class testparses {
 
         while (sc.hasNextLine()) {
             String line = sc.nextLine();
-            line.trim();
+            line=line.trim();
             if ((line.isEmpty())) ++lineNumber;
             else t = t + line;
         }
