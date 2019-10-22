@@ -115,7 +115,7 @@ public class test {
 //            System.out.println();
 //            System.out.println("IsBoardEmpty(arr.get(1)) "+IsBoardEmpty(arr.get(1)));
 //            System.out.println("AreValidConsecutives(arr.get(0),arr.get(1) "+AreValidConsecutives(arr.get(0),arr.get(1),"W"));
-            return IsBoardEmpty(arr.get(1)) &&  AreValidConsecutives(arr.get(0),arr.get(1),"W");
+            return IsBoardEmpty(arr.get(1)) &&  AreValidConsecutives(arr.get(0),arr.get(1),"B");
         }
         else
         {
