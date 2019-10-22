@@ -9,13 +9,13 @@ public class test {
 
      //   System.out.print(xpos +" "+ypos);
 //        System.out.println(stone);
-        System.out.println("whose chance is"+WhoseChance(arr));
+      //  System.out.println("whose chance is"+WhoseChance(arr));
         if(!stone.trim().equals(WhoseChance(arr)))//check if TURN is valid
         {
            // System.out.println("Hello");
             return false;
         }
-       System.out.println("checking validity of the board "+IsBoardValid(arr));
+      // System.out.println("checking validity of the board "+IsBoardValid(arr));
 
         if(!IsBoardValid(arr))
         {
@@ -120,18 +120,18 @@ public class test {
         else
         {
             String stone=WhoseChance(arr);
-            System.out.println("stone"+stone);
+           // System.out.println("stone"+stone);
             if(stone.trim().equals("B"))
             {
 //                System.out.println("stonr"+stone);
-               System.out.println("AreValidConsecutives(arr.get(0),arr.get(1),\"W\")"+AreValidConsecutives(arr.get(0),arr.get(1),"W"));
-               System.out.println("AreValidConsecutives(arr.get(1),arr.get(2),\"B\")"+AreValidConsecutives(arr.get(1),arr.get(2),"B"));
+//               System.out.println("AreValidConsecutives(arr.get(0),arr.get(1),\"W\")"+AreValidConsecutives(arr.get(0),arr.get(1),"W"));
+//               System.out.println("AreValidConsecutives(arr.get(1),arr.get(2),\"B\")"+AreValidConsecutives(arr.get(1),arr.get(2),"B"));
                 return  AreValidConsecutives(arr.get(1),arr.get(2),"B") &&AreValidConsecutives(arr.get(0),arr.get(1),"W") && !CheckEqual(arr.get(0),arr.get(2));
             }
             else if(stone.trim().equals("W"))
             {
-                System.out.println("AreValidConsecutives(arr.get(0),arr.get(1),\"W\")"+AreValidConsecutives(arr.get(0),arr.get(1),"B"));
-                System.out.println("AreValidConsecutives(arr.get(1),arr.get(2),\"B\")"+AreValidConsecutives(arr.get(1),arr.get(2),"W"));
+//                System.out.println("AreValidConsecutives(arr.get(0),arr.get(1),\"W\")"+AreValidConsecutives(arr.get(0),arr.get(1),"B"));
+//                System.out.println("AreValidConsecutives(arr.get(1),arr.get(2),\"B\")"+AreValidConsecutives(arr.get(1),arr.get(2),"W"));
                 return AreValidConsecutives(arr.get(1),arr.get(2),"W")&&  AreValidConsecutives(arr.get(0),arr.get(1),"B") && !CheckEqual(arr.get(0),arr.get(2));
 
             }
