@@ -236,12 +236,20 @@ public class test {
 
     public boolean CheckKoRule8(String stone, int xpos, int ypos, List<String[][]> arr)
     {
-        if(arr.size()!=2)
+        if(arr.size()!=3)
         {
             return false;
         }
         String[][] str=arr.get(0);
         str[xpos][ypos]=stone;
+        if(stone.trim().equals("B"))
+        {
+            RemoveZeroLiberty("W",str);
+        }
+        else if(stone.trim().equals("W"))
+        {
+            RemoveZeroLiberty("B",str);
+        }
          if(CheckEqual(str,arr.get(1)))
          {
              return true;
