@@ -80,6 +80,7 @@ public class test {
         }
         if(stone.trim().equals("W"))
         {
+
         //    System.out.println("hello12");
             RemoveZeroLiberty("B",arr);
           //  printBoard(arr);
