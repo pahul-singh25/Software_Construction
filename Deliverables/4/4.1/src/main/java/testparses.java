@@ -30,7 +30,7 @@ public class testparses {
         for(int h=1;h<=t.length();++h) {
 
             String sub = t.substring(in,h);
-            if(isJson(sub)){
+            if(isJson(sub) && !(sub.equals(" "))){
                 in = h;
                 Rule_Checker ob= new Rule_Checker();
                 JsonElement res=ob.startPlay(sub);
