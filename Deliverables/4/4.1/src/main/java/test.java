@@ -445,6 +445,10 @@ public class test {
         }
         else
         {
+            if(IsBoardEmpty(arr.get(2)) && IsBoardEmpty(arr.get(1)))
+            {
+                return "B";
+            }
             int numberBlack1=0;
             int numberWhite1=0;
             int numberBlack2=0;
