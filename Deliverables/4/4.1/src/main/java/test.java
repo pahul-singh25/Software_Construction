@@ -9,7 +9,7 @@ public class test {
 
      //   System.out.print(xpos +" "+ypos);
 //        System.out.println(stone);
-      //  System.out.println("whose chance is"+WhoseChance(arr));
+       // System.out.println("whose chance is"+WhoseChance(arr));
         if(!stone.trim().equals(WhoseChance(arr)))//check if TURN is valid
         {
            // System.out.println("Hello");
@@ -166,11 +166,22 @@ public class test {
                 if(arr2[i][j].equals(" "))
                 {
                     arr2[i][j]=StoneChance;
-                    //printBoard(arr2);
+//                    if(i==17 && j==3 && StoneChance.trim().equals("W"))
+//                    {
+//                        printBoard(arr2);
+//                        System.out.println();
+//                    }
+
                     if(StoneChance.trim().equals("B"))
                     {
                         RemoveZeroLiberty("W",arr2);
-//                        if(x<5)
+////                        if(x<5)
+//                        if(i==17 && j==3)
+//                        {
+//                            printBoard(arr2);
+//                            System.out.println();
+//                        }
+
 //                        printBoard(arr2);
                         int liberty=CheckLiberty(i,j,arr2);
                         if(liberty!=0)
@@ -193,7 +204,16 @@ public class test {
                     else
                     {
                         RemoveZeroLiberty("B",arr2);
+//                        if(i==17 && j==3 && StoneChance.trim().equals("W"))
+//                        {
+//                            printBoard(arr2);
+//                            System.out.println();
+//                        }
                         int liberty=CheckLiberty(i,j,arr2);
+//                        if(i==17 && j==3 && StoneChance.trim().equals("W"))
+//                        {
+//                            System.out.println("loberty is"+ liberty);
+//                        }
 //                        if(i==18 && j==18)
 //                        {
 //                            printBoard(arr2);
@@ -337,6 +357,7 @@ public class test {
         int[][] intarr=new int[19][19];
         return CheckLibertyHelper(xpos,ypos,arr[xpos][ypos],arr,intarr);
 
+
 //        int liberty=0;
 //        if(xpos-1>=0 && arr[xpos-1][ypos].equals(" "))
 //            liberty++;
@@ -365,9 +386,9 @@ public class test {
         if(ypos-1>=0 &&  intarr[xpos][ypos-1]==0 && arr[xpos][ypos-1].equals(" "))
             ans++;
 
-        if(xpos+1<18 &&  intarr[xpos+1][ypos]==0 && arr[xpos+1][ypos].equals(" "))
+        if(xpos+1<=18 &&  intarr[xpos+1][ypos]==0 && arr[xpos+1][ypos].equals(" "))
             ans++;
-        if(ypos+1<18 &&  intarr[xpos][ypos+1]== 0&& arr[xpos][ypos+1].equals(" "))
+        if(ypos+1<=18 &&  intarr[xpos][ypos+1]== 0&& arr[xpos][ypos+1].equals(" "))
             ans++;
 
     // Recursive Calls
@@ -382,12 +403,12 @@ public class test {
             int smallans=CheckLibertyHelper(xpos,ypos-1,Stone,arr,intarr);
             ans=ans+smallans;
         }
-        if(xpos+1<18 &&  intarr[xpos+1][ypos]==0 && arr[xpos+1][ypos].equals(Stone))
+        if(xpos+1<=18 &&  intarr[xpos+1][ypos]==0 && arr[xpos+1][ypos].equals(Stone))
         {
             int smallans=CheckLibertyHelper(xpos+1,ypos,Stone,arr,intarr);
             ans=ans+smallans;
         }
-        if(ypos+1<18 &&  intarr[xpos][ypos+1]== 0&& arr[xpos][ypos+1].equals(Stone))
+        if(ypos+1<=18 &&  intarr[xpos][ypos+1]== 0&& arr[xpos][ypos+1].equals(Stone))
         {
             int smallans=CheckLibertyHelper(xpos,ypos+1,Stone,arr,intarr);
             ans=ans+smallans;
