@@ -1,9 +1,9 @@
-public class project {
+import java.io.IOException;
 
-    public static void main(String[] args)
-    {
-        test obj= new test();
+public class project {
+    public static void main(String args []) throws IOException {
+        testparses_5 obj=new testparses_5();
+        obj.takeInp();
 
     }
 }
-

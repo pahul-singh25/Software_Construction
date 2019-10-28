@@ -1,0 +1,4 @@
+#!/bin/bash
+
+cd /home/travis/build/pahul-singh25/Software_Construction/Deliverables/5/5.1/build/libs
+java -jar pahul-1.0-SNAPSHOT.jar
