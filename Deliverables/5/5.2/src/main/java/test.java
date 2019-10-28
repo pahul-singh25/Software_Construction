@@ -85,7 +85,7 @@ public class test
 
             }
         }
-        return "pass1";
+        return "pass";
     }
 
     public boolean PlaceStoneValidity(String stone, int xpos, int ypos, List<String[][]> arr)
