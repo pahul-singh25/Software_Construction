@@ -54,7 +54,7 @@ public class test
                     boolean checkvalidity=PlaceStoneValidity(stone,i,j,arr);
                     if(checkvalidity && capture)
                     {
-                        return (j+1)+" "+(i+1);
+                        return (j+1)+"-"+(i+1);
                     }
 
                 }
