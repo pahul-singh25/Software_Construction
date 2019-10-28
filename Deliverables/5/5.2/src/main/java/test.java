@@ -267,12 +267,12 @@ public class test
                     {
 
                         RemoveZeroLiberty("B",arr2);
-                        if(i==10 && j==7 )
-                        {
-                            System.out.println("Inside else");
-                            printBoard(arr2);
-                            System.out.println();
-                        }
+//                        if(i==10 && j==7 )
+//                        {
+//                            System.out.println("Inside else");
+//                            printBoard(arr2);
+//                            System.out.println();
+//                        }
                         int liberty=CheckLiberty(i,j,arr2);
 //                        if(i==17 && j==3 && StoneChance.trim().equals("W"))
 //                        {
