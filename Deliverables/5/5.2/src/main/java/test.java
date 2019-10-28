@@ -10,11 +10,13 @@ public class test
     {
         if(!stone.trim().equals(WhoseChance(arr)))//check if TURN is valid
         {
+          //  System.out.println("hello");
             // System.out.println("Hello");
             return "This history makes no sense!";
         }
         if(!IsBoardValid(arr))
         {
+           // System.out.println("hello11");
 //            System.out.println();
 //            System.out.println("inside isboardvalid");
 //            System.out.println();
@@ -52,8 +54,12 @@ public class test
                 if(input[i][j].equals(" "))
                 {
                     boolean checkvalidity=PlaceStoneValidity(stone,i,j,arr);
-                    if(checkvalidity && capture)
+                    if(checkvalidity && capture )
                     {
+//                        System.out.println();
+//                        System.out.println("inside the most omportant part" + i + " " + j);
+//                        System.out.println(stone);
+//                        System.out.println();
                         return (j+1)+"-"+(i+1);
                     }
 
@@ -115,9 +121,18 @@ public class test
         capture=false;
         if(stone.trim().equals("B"))
         {
+//            if(xpos==2 && ypos==0)
+//            {
+//                System.out.println("xpos==2 && ypos==0");
+//            }
             RemoveZeroLiberty("W",arr);
+//            if(xpos==2 && ypos==0)
+//            {
+//                printBoard(arr);
+//            }
             if(CheckLiberty(xpos,ypos,arr)==0)
             {
+               // System.out.println("xpos==2 && ypos==0");
                 arr[xpos][ypos]=" ";
 
                 return true;
@@ -137,6 +152,7 @@ public class test
                 return true;
             }
         }
+        arr[xpos][ypos]=" ";
 
         return false;
     }
@@ -165,7 +181,8 @@ public class test
         else
         {
             String stone=WhoseChance(arr);
-            // System.out.println("stone"+stone);
+
+            // System.out.println("WhoseChance(arr) "+stone);
             if(stone.trim().equals("B"))
             {
 //                System.out.println("stonr"+stone);
@@ -175,8 +192,8 @@ public class test
             }
             else if(stone.trim().equals("W"))
             {
-//                System.out.println("AreValidConsecutives(arr.get(0),arr.get(1),\"W\")"+AreValidConsecutives(arr.get(0),arr.get(1),"B"));
-//                System.out.println("AreValidConsecutives(arr.get(1),arr.get(2),\"B\")"+AreValidConsecutives(arr.get(1),arr.get(2),"W"));
+//                System.out.println("AreValidConsecutives(arr.get(0),arr.get(1),\"B\")"+AreValidConsecutives(arr.get(0),arr.get(1),"B"));
+//                System.out.println("AreValidConsecutives(arr.get(1),arr.get(2),\"W\")"+AreValidConsecutives(arr.get(1),arr.get(2),"W"));
                 return AreValidConsecutives(arr.get(1),arr.get(2),"W")&&  AreValidConsecutives(arr.get(0),arr.get(1),"B") && !CheckEqual(arr.get(0),arr.get(2));
 
             }
@@ -191,7 +208,7 @@ public class test
         {
             return true;
         }
-//        String StoneChance;
+ //        System.out.println("AreValidConsecutives Stones "+ StoneChance.trim().equals("W"));
 //        if(Stone.equals("B"))
 //        {
 //            StoneChance="W";
@@ -221,7 +238,7 @@ public class test
                     {
                         RemoveZeroLiberty("W",arr2);
 ////                        if(x<5)
-//                        if(i==17 && j==3)
+//                        if(i==10 && j==7 && StoneChance.trim().equals("W"))
 //                        {
 //                            printBoard(arr2);
 //                            System.out.println();
@@ -248,12 +265,14 @@ public class test
                     }
                     else
                     {
+
                         RemoveZeroLiberty("B",arr2);
-//                        if(i==17 && j==3 && StoneChance.trim().equals("W"))
-//                        {
-//                            printBoard(arr2);
-//                            System.out.println();
-//                        }
+                        if(i==10 && j==7 )
+                        {
+                            System.out.println("Inside else");
+                            printBoard(arr2);
+                            System.out.println();
+                        }
                         int liberty=CheckLiberty(i,j,arr2);
 //                        if(i==17 && j==3 && StoneChance.trim().equals("W"))
 //                        {
@@ -319,8 +338,10 @@ public class test
         }
         if(CheckEqual(str,arr.get(1)))
         {
+            str[xpos][ypos]=" ";
             return true;
         }
+        str[xpos][ypos]=" ";
 
         return false;
     }
