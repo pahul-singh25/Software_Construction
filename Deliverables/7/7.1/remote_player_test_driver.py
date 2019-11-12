@@ -15,6 +15,7 @@ def main():
     
     server_ADD = (IP_ADD, port_num)
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
     s.connect(server_ADD)
 
     P = remote_player(player(),s)
@@ -48,7 +49,7 @@ def main():
             sequence_num += 1
     except EOFError:
         pass
-
+    s.shutdown(1)
     s.close()
 
 if __name__ == "__main__":

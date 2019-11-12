@@ -62,11 +62,13 @@ def main():
                 ret.append(pickle.loads(conn.recv(4096)))
     except EOFError:
         pass
+
+    #
     
     
     s.close()
+    
     conn.close()
-
     
 
     ret = json.dumps(ret)
