@@ -48,10 +48,20 @@ def main():
                 if sequence_num <= 1 or (len(i[1]) not in {1,2,3}):
                     reportInvalid(s)
                     break
+                break_flag = 0
                 for a in i[1]:
-                    if (len(a),len(a[1])) != (19,19):
+                    if len(a) != 19:
                         reportInvalid(s)
+                        break_flag = 1
                         break
+                    for j in a:
+                        if len(j) != 19:
+                            reportInvalid(s)
+                            break_flag = 1
+                            break
+                    if break_flag: break
+                if break_flag:
+                    break
                 result = tuple_to_string(P.make_move(i[1]))
                 s.send(pickle.dumps(result))
             else:
