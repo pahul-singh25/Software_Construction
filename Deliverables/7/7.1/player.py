@@ -3,7 +3,7 @@ from board import *
 from abc import ABC, abstractmethod
 import socket
 import json
-
+#
 
 class game_player(ABC):
     
