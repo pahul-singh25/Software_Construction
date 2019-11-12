@@ -7,7 +7,7 @@ def tuple_to_string(t):
     else: return t
 
 def reportInvalid(s):
-    s.send(pickle.dumps('Go has gone crazy!'))
+    s.send(pickle.dumps('GO has gone crazy!'))
 
 def main():
     with open('go.config') as json_file:
