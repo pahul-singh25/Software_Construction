@@ -2,4 +2,4 @@
 
 # This is the file "run": it runs the actual submission
 
-python3 test_driver.py & python3 remote_player_test_driver.py
+cat - | python3 test_driver.py & sleep 1 && python3 remote_player_test_driver.py
