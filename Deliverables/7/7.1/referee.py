@@ -30,6 +30,7 @@ class Referee:
     def start_game(self):
         self.game_start = True
         return self.boardHistory
+    
     def check_move(self,coordinate):
         winner = []
         if coordinate == "pass":
@@ -44,7 +45,7 @@ class Referee:
             self.currentPlayer = "B" if self.currentPlayer == "W" else "W"
             self.RC.take_out_stones_without_liberty(self.currentPlayer, B)
             newBoard = B.board
-            self.boardHistory = [newBoard] +self.boardHistory
+            self.boardHistory = [newBoard] + self.boardHistory
             if len(self.boardHistory) > 3:
                 self.boardHistory = self.boardHistory[:3]
             

@@ -4,6 +4,7 @@ from player import *
 import json
 import sys
 import socket
+import pickle
 
 def tuple_to_string(t):
     if isinstance(t,tuple):
@@ -30,81 +31,47 @@ def read_json():
 
     return input_list
 
-
-
 def main():
-    ret = []
-    data = read_json()
-    P = player()
-    # ########
-    # k = -2 #
-    # ########
-    # data = [data[k]]
-    # P.set_name("B")
-    P.set_n(1)
-    
-    for i in data:
-        if i[0] == "register":  
-            ret.append("no name")
-        elif i[0] == "receive-stones":
-            P.set_name(i[1])
-        elif i[0] == "make-a-move":
-            ret.append(tuple_to_string(P.make_move(i[1])))
-    
-    ret = json.dumps(ret)   
-    print(ret)
-
-
-def new_main():
     #set up the port 
     with open('go.config') as json_file:
         go_config = json.load(json_file)
     
-    print(go_config)
     IP_ADD = go_config['IP']
     port_num = go_config['port']
     
     server_ADD = (IP_ADD, port_num)
+    
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
     s.bind(server_ADD)
-
-    #create remote_player object and start the connection
-    P = remote_player(player(),s)
+    s.listen(1)
+    conn, _ = s.accept()
+    
     #s.connect()
+    #print('connection')
+    ret = []
 
     data = read_json()
-    sequence_num, ret = 0, []
+    #conn.send(pickle.dumps(len(data)))
+    try:
+        for i in data:
+            if i[0] == "receive-stones":
+                conn.send(pickle.dumps(i))
+            else:
+                conn.send(pickle.dumps(i))
+                ret.append(pickle.loads(conn.recv(4096)))
+    except EOFError:
+        pass
+    
+    
+    s.close()
+    conn.close()
 
-
-    for i in data:
-        if i[0] == "register":
-            if sequence_num != 0:
-                ret.append('Go has going crazy!')
-                s.close()
-                break
-            ret.append("no name")
-        elif i[0] == "receive-stones":
-            if sequence_num != 1:
-                ret.append('Go has going crazy!')
-                s.close()
-                break
-            s.send(i[1])
-            P.set_name()
-        elif i[0] == "make-a-move":
-            if sequence_num <= 1:
-                ret.append('Go has going crazy!')
-                s.close()
-                break
-            s.send(i[1])
-            P.make_move()
-            result = s.recv()
-            ret.append(tuple_to_string(result))
-            
-        sequence_num += 1
+    
 
     ret = json.dumps(ret)
     print(ret)
 
 
 if __name__ == "__main__":
-    new_main()
+    main()

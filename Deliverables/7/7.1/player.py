@@ -155,15 +155,13 @@ class remote_player(player):
         #self.socket.listen()
 
     def get_stone(self):
-        stone = self.player.get_stone
+        stone = self.player.get_stone()
         self.socket.send(stone)
 
-    def set_name(self):
-        name = self.socket.recv(4096)
+    def set_name(self, name):
         self.player.set_name(name)
     
-    def set_stone(self):
-        stone = self.socket.recv(4096)
+    def set_stone(self, stone):
         self.player.set_stone(stone)
     
     def set_n(self):
@@ -173,9 +171,8 @@ class remote_player(player):
     
     def get_name(self):
         name = self.player.get_name()
-        self.socket.send(name)
+        return name
     
-    def make_move(self):
-        board = self.socket.recv()
-        result = self.player.make_move(board)
-        self.socket.send(result)
+    def make_move(self, Boards):
+        result = self.player.make_move(Boards)
+        return result
