@@ -60,7 +60,7 @@ def main():
             else:
                 conn.send(pickle.dumps(i))
                 ret.append(pickle.loads(conn.recv(4096)))
-    except EOFError:
+    except EOFError and BrokenPipeError:
         pass
 
     
