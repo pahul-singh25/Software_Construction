@@ -65,7 +65,6 @@ def main():
 
     #
     
-    
     s.close()
     
     conn.close()
