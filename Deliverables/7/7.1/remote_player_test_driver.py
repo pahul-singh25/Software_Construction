@@ -6,6 +6,9 @@ def tuple_to_string(t):
         return str(t[0]+1) + '-' + str(t[1]+1)
     else: return t
 
+def reportInvalid(s):
+    s.send(pickle.dumps('Go has gone crazy!'))
+
 def main():
     with open('go.config') as json_file:
         go_config = json.load(json_file)
@@ -16,11 +19,12 @@ def main():
     server_ADD = (IP_ADD, port_num)
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+    
     s.connect(server_ADD)
-
     P = remote_player(player(),s)
     #data = pickle.loads(s.recv(4096))
     #len_ = i = pickle.loads(s.recv(4096))
+    
     
     
     sequence_num = 0
@@ -29,23 +33,30 @@ def main():
         while True:
             i = pickle.loads(s.recv(4096))
             if i[0] == "register":
-                if sequence_num != 0:
-                    s.send(pickle.dumps('Go has going crazy!'))
+                #not the first, len not equal to 1
+                if sequence_num != 0 or len(i) != 1:
+                    reportInvalid(s)
                     break
                 s.send(pickle.dumps("no name"))
             elif i[0] == "receive-stones":
-                if sequence_num != 1:
-                    s.send(pickle.dumps('Go has going crazy!'))
+                if sequence_num != 1 or len(i) != 2 or i[1] not in ["B", "W"]:
+                    reportInvalid(s)
                     break
                 P.set_stone(i[1])
                 P.set_n()
             elif i[0] == "make-a-move":
-                if sequence_num <= 1:
-                    s.send(pickle.dumps('Go has going crazy!'))
+                if sequence_num <= 1 or (len(i[1]) not in {1,2,3}):
+                    reportInvalid(s)
                     break
+                for a in i[1]:
+                    if (len(a),len(a[1])) != (19,19):
+                        reportInvalid(s)
+                        break
                 result = tuple_to_string(P.make_move(i[1]))
                 s.send(pickle.dumps(result))
-                
+            else:
+                reportInvalid(s)
+                break
             sequence_num += 1
     except EOFError:
         pass

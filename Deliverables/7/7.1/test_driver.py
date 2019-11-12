@@ -46,7 +46,7 @@ def main():
     s.bind(server_ADD)
     s.listen(1)
     conn, _ = s.accept()
-    
+    s.close()
     #s.connect()
     #print('connection')
     ret = []
@@ -63,9 +63,8 @@ def main():
     except EOFError:
         pass
 
-    #
     
-    s.close()
+    
     
     conn.close()
     
