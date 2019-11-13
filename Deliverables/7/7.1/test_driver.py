@@ -11,28 +11,8 @@ def tuple_to_string(t):
         return str(t[0]+1) + '-' + str(t[1]+1)
     else: return t
 
-def read_json():
-    
-    input_list = [] 
-    
-    decoder = json.JSONDecoder()
-    
-    data_to_use = ''
 
-    for data in sys.stdin: 
-        
-        data_to_use+= data.lstrip().rstrip('\n').rstrip() + ' '
-            
-    data = data_to_use.lstrip()
-    while data:
-        json_object,idx = decoder.raw_decode(data)
-        input_list.append(json_object)	
-        data = data[idx:].lstrip()	      
-
-    return input_list
-
-def main():
-    #set up the port 
+def GET_SOCKET_CONFIG():
     with open('go.config') as json_file:
         go_config = json.load(json_file)
     
@@ -40,30 +20,60 @@ def main():
     port_num = go_config['port']
     
     server_ADD = (IP_ADD, port_num)
-    
+    return server_ADD
+
+def main():
+    #set up the port 
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-    s.bind(server_ADD)
+    s.bind(GET_SOCKET_CONFIG())
     s.listen(1)
     conn, _ = s.accept()
     s.close()
-    #s.connect()
-    #print('connection')
+    
+    decoder = json.JSONDecoder()
+    data_to_use = ''
     ret = []
 
-    data = read_json()
-    #conn.send(pickle.dumps(len(data)))
+    #read data in
+    for data in sys.stdin: 
+        data_to_use+= data.lstrip().rstrip('\n').rstrip() + ' '
+    
+    data = data_to_use.lstrip()
+
     try:
-        for i in data:
+        while data:
+            i,idx = decoder.raw_decode(data)
+            data = data[idx:].lstrip()
             if i[0] == "receive-stones":
                 conn.send(pickle.dumps(i))
+                mess = pickle.loads(conn.recv(4096))
+                if not mess:
+                    continue
+                else:
+                    ret.append(mess)
             else:
                 conn.send(pickle.dumps(i))
-                ret.append(pickle.loads(conn.recv(4096)))
+                ret.append(pickle.loads(conn.recv(4096)))     
     except (EOFError, BrokenPipeError) as e:
         pass
+   
+    #conn.send(pickle.dumps(len(data)))
+    # try:
+    #     for i in data:
+    #         if i[0] == "receive-stones":
+    #             conn.send(pickle.dumps(i))
+    #             mess = pickle.loads(conn.recv(4096))
+    #             if not mess:
+    #                 continue
+    #             else:
+    #                 ret.append(mess)
+    #         else:
+    #             conn.send(pickle.dumps(i))
+    #             ret.append(pickle.loads(conn.recv(4096)))
+    # except (EOFError, BrokenPipeError) as e:
+    #     pass
 
-    
     
     
     conn.close()

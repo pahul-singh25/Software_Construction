@@ -3,7 +3,9 @@ from board import *
 from player import *
 import json
 import sys
-#ehhe
+import socket
+import pickle
+
 def tuple_to_string(t):
     if isinstance(t,tuple):
         return str(t[0]+1) + '-' + str(t[1]+1)
@@ -12,7 +14,6 @@ def tuple_to_string(t):
 def read_json():
     
     input_list = [] 
-    num_json = 0
     
     decoder = json.JSONDecoder()
     
@@ -26,35 +27,51 @@ def read_json():
     while data:
         json_object,idx = decoder.raw_decode(data)
         input_list.append(json_object)	
-        num_json += 1
         data = data[idx:].lstrip()	      
 
     return input_list
 
-
-
 def main():
+    #set up the port 
+    with open('go.config') as json_file:
+        go_config = json.load(json_file)
+    
+    IP_ADD = go_config['IP']
+    port_num = go_config['port']
+    
+    server_ADD = (IP_ADD, port_num)
+    
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+    s.bind(server_ADD)
+    s.listen(1)
+    conn, _ = s.accept()
+    s.close()
+    #s.connect()
+    #print('connection')
     ret = []
+
     data = read_json()
-    P = player()
-    # ########
-    # k = -2 #
-    # ########
-    # data = [data[k]]
-    # P.set_name("B")
+    #conn.send(pickle.dumps(len(data)))
+    try:
+        for i in data:
+            if i[0] == "receive-stones":
+                conn.send(pickle.dumps(i))
+            else:
+                conn.send(pickle.dumps(i))
+                ret.append(pickle.loads(conn.recv(4096)))
+    except (EOFError, BrokenPipeError) as e:
+        pass
+
     
     
-    for i in data:
-        if i[0] == "register":  
-            ret.append("no name")
-        elif i[0] == "receive-stones":
-            P.set_stone(i[1])
-            P.set_n(1)
-        elif i[0] == "make-a-move":
-            ret.append(tuple_to_string(P.make_move(i[1])))
     
-    ret = json.dumps(ret)   
+    conn.close()
+    
+
+    ret = json.dumps(ret)
     print(ret)
+
 
 if __name__ == "__main__":
     main()
