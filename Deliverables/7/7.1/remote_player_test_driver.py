@@ -44,8 +44,9 @@ def main():
                     break
                 P.set_stone(i[1])
                 P.set_n()
+                s.send(pickle.dumps(""))
             elif i[0] == "make-a-move":
-                if sequence_num <= 1 or (len(i[1]) not in {1,2,3}):
+                if sequence_num <= 1 or len(i) != 2 or (len(i[1]) not in {1,2,3}):
                     reportInvalid(s)
                     break
                 break_flag = 0
@@ -59,9 +60,15 @@ def main():
                             reportInvalid(s)
                             break_flag = 1
                             break
+                        for k in j:
+                            if k not in ["B","W"," "]:
+                                reportInvalid(s)
+                                break_flag = 1
+                                break
                     if break_flag: break
                 if break_flag:
                     break
+                
                 result = tuple_to_string(P.make_move(i[1]))
                 s.send(pickle.dumps(result))
             else:

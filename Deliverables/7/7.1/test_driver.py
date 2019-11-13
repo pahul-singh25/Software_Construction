@@ -46,15 +46,19 @@ def main():
             i,idx = decoder.raw_decode(data)
             data = data[idx:].lstrip()
             if i[0] == "receive-stones":
+                
                 conn.send(pickle.dumps(i))
+                
                 mess = pickle.loads(conn.recv(4096))
                 if not mess:
                     continue
                 else:
                     ret.append(mess)
             else:
+                
                 conn.send(pickle.dumps(i))
                 ret.append(pickle.loads(conn.recv(4096)))     
+
     except (EOFError, BrokenPipeError) as e:
         pass
    
