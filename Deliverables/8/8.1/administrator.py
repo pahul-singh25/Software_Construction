@@ -38,7 +38,7 @@ def main():
     s.listen(1)
     conn, _ = s.accept()
     s.close()
-
+    #
     p2 = foo.remote_player(conn)
     referee = Referee(p1, p2)
     
