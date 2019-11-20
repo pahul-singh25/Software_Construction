@@ -162,7 +162,7 @@ class remote_player(player):
         mess = json.dumps(mess)
         self.conn.send((mess.encode()))
         result = self.conn.recv(4096)
-        result = result.decode
+        result = result.decode()
         return result
 
     def set_stone(self,mess):
@@ -174,5 +174,5 @@ class remote_player(player):
         mess = ['make-a-move',Board]
         mess = json.dumps(mess)
         self.conn.send((mess.encode()))
-        result = self.conn.recv(6000).decode
+        result = self.conn.recv(6000).decode()
         return result

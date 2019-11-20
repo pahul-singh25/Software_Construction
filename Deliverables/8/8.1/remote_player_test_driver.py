@@ -1,4 +1,4 @@
-from player import *
+from default_player import *
 from global_length import BOARD_LENGTH
 
 

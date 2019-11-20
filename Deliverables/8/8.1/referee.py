@@ -1,4 +1,4 @@
-from player import *
+from default_player import *
 from rule_checker import *
 from board import *
 import copy
