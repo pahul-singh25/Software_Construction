@@ -45,6 +45,7 @@ def main():
     winner = ''
     try:
         name1, name2 = p1.register(), p2.register()
+        p2.name = name2
         if not isinstance(name2, str):
             winner = name1
             raise Remote_Exception()

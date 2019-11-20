@@ -155,6 +155,7 @@ class remote_player(player):
     
     def __init__(self, conn):
         self.conn = conn
+        self.name = 'no name'
         #self.socket.listen()
 
     def register(self):
