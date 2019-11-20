@@ -40,9 +40,9 @@ def main():
     winner = ''
     try:
         name1, name2 = p1.register(), p2.register()
-        ret.append(name1)
         if not isinstance(name2, str):
             winner = name1
+            raise Remote_Exception()
         referee.start_game()
         while referee.game_state():
             if 'B' == referee.currentPlayer:
@@ -64,19 +64,25 @@ def main():
                 
             else:
                 move = p2.make_move(board_history)
-                print(move)
                 if isinstance(move,str):
-                    if move != 'pass':
-                        winner = name1
-                        raise Remote_Exception()
-
-                elif not isinstance(move,tuple):
-                    winner = name1
-                    raise Remote_Exception()
-                elif len(move) != 2 or move[0] < 0 or move[0] > 8 or move[1] < 0 or move[1] > 8 :
-                    winner = name1
-                    raise Remote_Exception()
-                board_history = referee.check_and_make_move(move)
+                    if move == 'pass':
+                        pass
+                    else:
+                        c_flag = 0
+                        if len(move) == 3:
+                            if move[1] == '-':
+                                if move[0].isnumeric() and move[2].isnumeric():
+                                    if int(move[0]) != 0 and int(move[2]) != 0:
+                                        
+                                        c_flag = 1
+                        if c_flag:
+                            board_history = referee.check_and_make_move(move)
+                        else:
+                            raise Remote_Exception()    
+                else:
+                    raise Remote_Exception()    
+                
+                
     except(EOFError, BrokenPipeError) as e:
         winner = name1
     except Remote_Exception:
@@ -85,7 +91,7 @@ def main():
         winner = name2
     
     if not winner:
-        winner = [board_history]
+        winner = board_history
     else:
         winner = [winner]
     winner = json.dumps(winner)
