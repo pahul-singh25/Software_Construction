@@ -11,7 +11,7 @@ def GET_PLAYERS_CONFIG():
     port_num = go_config['port']
     
     server_ADD = (IP_ADD, port_num)
-    return server_ADD, go_config['defaultplayer']
+    return server_ADD, go_config['default-player']
 
 
 def main():
