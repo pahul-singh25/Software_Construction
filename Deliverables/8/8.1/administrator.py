@@ -67,18 +67,18 @@ def main():
                 print(move)
                 if isinstance(move,str):
                     if move != 'pass':
-                        winner = name2
+                        winner = name1
                         raise Remote_Exception()
 
                 elif not isinstance(move,tuple):
-                    winner = name2
+                    winner = name1
                     raise Remote_Exception()
                 elif len(move) != 2 or move[0] < 0 or move[0] > 8 or move[1] < 0 or move[1] > 8 :
-                    winner = name2
+                    winner = name1
                     raise Remote_Exception()
                 board_history = referee.check_and_make_move(move)
     except(EOFError, BrokenPipeError) as e:
-        winner = p1.get_name()
+        winner = name1
     except Remote_Exception:
         winner = name1
     except Local_Exception:
