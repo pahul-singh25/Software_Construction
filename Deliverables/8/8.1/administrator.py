@@ -3,6 +3,13 @@ from board import *
 import importlib.util
 from global_length import Local_Exception, Remote_Exception
 
+def string_to_tuple(s):
+    if s == 'pass':
+        return s
+    a = s.split('-')
+    return (int(a[1])-1, int(a[0])-1)
+
+
 def GET_PLAYERS_CONFIG():
     with open('go.config') as json_file:
         go_config = json.load(json_file)
@@ -22,7 +29,6 @@ def main():
     foo = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(foo)
     
-    ret = []
     #set up local player
     p1 = foo.player()
     #set up remote player
@@ -36,14 +42,13 @@ def main():
     p2 = foo.remote_player(conn)
     referee = Referee(p1, p2)
     
-    board_history = referee.start_game()
     winner = ''
     try:
         name1, name2 = p1.register(), p2.register()
         if not isinstance(name2, str):
             winner = name1
             raise Remote_Exception()
-        referee.start_game()
+        board_history = referee.start_game()
         while referee.game_state():
             if 'B' == referee.currentPlayer:
                 move = p1.make_move(board_history)   
@@ -66,7 +71,7 @@ def main():
                 move = p2.make_move(board_history)
                 if isinstance(move,str):
                     if move == 'pass':
-                        pass
+                        board_history = referee.check_and_make_move(string_to_tuple(move))
                     else:
                         c_flag = 0
                         if len(move) == 3:
@@ -76,7 +81,7 @@ def main():
                                         
                                         c_flag = 1
                         if c_flag:
-                            board_history = referee.check_and_make_move(move)
+                            board_history = referee.check_and_make_move(string_to_tuple(move))
                         else:
                             raise Remote_Exception()    
                 else:
